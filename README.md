@@ -8,7 +8,6 @@
 **Mentors:**  
 - Anna Zamansky  
 - Marcelo Feighelstein  
-- Ibrahim Jubran  
 <br />
     
 **30/11/2022 - Ibrahim's Notes:**
@@ -17,5 +16,8 @@
 - Each frame is part of a video. Analysis shouldn't be done only "locally and independently"  
 - Consider existing approaches for emotion detection from a video, perhaps on humans or other animals, and "translate" it for horses  
 - Data preperation stage: cropping and alignment  
+  
+  
+  
 
 
