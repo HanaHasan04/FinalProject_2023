@@ -25,12 +25,9 @@ def extract_and_save_video_frames():
                 print(img_name)
                 cv2.imwrite(img_name, frame)
                 i += 1
-
     cap.release()
     cv2.destroyAllWindows()
 
-
-# Press the green button in the gutter to run the script.
+    
 if __name__ == '__main__':
     extract_and_save_video_frames()
-    
