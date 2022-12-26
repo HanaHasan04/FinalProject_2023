@@ -47,7 +47,7 @@ cv2.rectangle(canvas, (50, 200), (200, 225), red, 5)
 cv2.circle(canvas, (centerX, centerY), r, white)
 ```
 
-**IMPORTANT!! EXTRACTING AND SAVING VIDEO FRAMES**  
+## **IMPORTANT: EXTRACTING AND SAVING VIDEO FRAMES**  
 ```
 import cv2
 # Opens the Video file
