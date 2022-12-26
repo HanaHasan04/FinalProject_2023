@@ -2,12 +2,6 @@ import os
 from pathlib import Path
 import cv2
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
 def extract_and_save_video_frames():
     path = Path('C:/Users/USER/Documents/UniversityProjects/PythonProjects/FinalProject')
     videos_path = Path(os.path.join(path, 'Videos')).glob('*')
@@ -39,7 +33,4 @@ def extract_and_save_video_frames():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     extract_and_save_video_frames()
-    # cv2.imwrite("Hi, LEON!", os.path.join("C:\\Users\\USER\\Documents\\UniversityProjects\\PythonProjects\\pyimg\\images", "OLA.jpg"))
-    # cap = cv2.VideoCapture("C:\\Users\\USER\\Documents\\UniversityProjects\\PythonProjects\\FinalProject\\Videos\\Baseline\\S1-B-3.mp4")
-    # im = cv2.imread('C:\\Users\\USER\\Documents\\UniversityProjects\\PythonProjects\\pyimg\\images\\StarWars_wallpaper.png')
-    # cv2.imwrite("C:\\Users\\USER\\Documents\\UniversityProjects\\PythonProjects\\pyimg\\images\\HELLO.jpg", im)
+    
