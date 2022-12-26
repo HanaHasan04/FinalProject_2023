@@ -63,11 +63,3 @@ while(cap.isOpened()):
 cap.release()
 cv2.destroyAllWindows()
 ```  
-  
-**Thresholding**  
-Thresholding is the binarization of an image. In general,
-we seek to convert a grayscale image to a binary image,
-where the pixels are either 0 or 255.  
-Normally, we use thresholding to focus on objects or areas of particular interest in an image. 
-
-
