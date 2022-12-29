@@ -63,3 +63,13 @@ while(cap.isOpened()):
 cap.release()
 cv2.destroyAllWindows()
 ```  
+  
+## Resizing and Cropping  
+  
+**Crop an image**  
+```crop_im = im[ymin:ymax, xmin:xmax]```  
+  
+**Resize an image (scaling by fx, fy)**  
+```new_im = cv2.resize(im, (0,0), fx= , fy= )```
+
+
