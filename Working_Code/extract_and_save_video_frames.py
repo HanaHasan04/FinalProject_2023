@@ -7,13 +7,10 @@ def extract_and_save_video_frames():
     videos_path = Path(os.path.join(path, 'Videos')).glob('*')
     for video_folder in videos_path:
         emotion = os.path.basename(video_folder)
-        print(emotion)
         images_path = os.path.join(path, 'Images')
-        print(images_path)
         for video in os.listdir(video_folder):
             video_name = os.path.splitext(video)[0]
             tmp = os.path.join(os.path.join(os.path.join(os.path.join(path, "Videos"), emotion)), str(video_name)+".mp4")
-            print(tmp)
             cap = cv2.VideoCapture(tmp)
             i = 0
             while cap.isOpened():
