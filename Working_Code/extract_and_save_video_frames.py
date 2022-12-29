@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 import cv2
@@ -32,5 +31,3 @@ def extract_and_save_video_frames():
     
 if __name__ == '__main__':
     extract_and_save_video_frames()
-
-```
