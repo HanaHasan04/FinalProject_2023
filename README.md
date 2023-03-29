@@ -1,16 +1,16 @@
 # Horse Emotion Classification from Videos  
 
-**Students:**  
+## **Students:**  
 - Hana Hasan  
 - Hallel Weinberg  
 - Tidhar Rettig  
 
-**Mentors:**  
+## **Mentors:**  
 - Anna Zamansky  
 - Marcelo Feighelstein  
   
   
-**Achievements and  Plans**:  
+## **Achievements and  Plans**:  
 - We learned the basics of OpenCV  
 - We are learning Deep Learning and Neural Networks  
 - We extracted and saved the video frames (we got ~179 frames per each ~3 sec video)  
@@ -20,3 +20,8 @@
 - We will use ResNet  
 - Classification will be done per frame independently. We started a discussion on Facebook: https://m.facebook.com/groups/MDLI1/permalink/2362483173915717/  
 - In case we do not get good results, we might try using LSTM  
+
+## **Progress Report:**
+- **January:** We learned the theory and practical tools: the basics of OpenCV, Deep Learning and Neural Networks.
+- **February:** We prepared the data: We extracted and saved the video frames. We cropped the horses faces. We started to check which model to work with.
+- **March:** We started to train a model that performs classification using tensorflow.
