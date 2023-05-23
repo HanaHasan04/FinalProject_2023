@@ -21,9 +21,19 @@ Perform Naive Bayes classification on the reduced feature data and compare the r
 - Run `FeatureExtractor.py`.
 - Run `NaiveBayes.py` and record the results in a report.
 - Run `PCA_TSNE.py` on all Excel files.
-- Run `NaiveBayes.py` again and compare the results.
+- Run `NaiveBayes.py` again and compare the results.  
+  
+**Real-Time Analysis Guide**:  
+- Use the `RealTime.py` script for real-time analysis or graphical visualization of our model.  
+- Recover the best Naive Bayes classifier using the Excel file with the best results.  
+- Load the video.  
+- Process the video frame-by-frame:  
+- - Apply YOLO object detection to draw a bounding box around the horse's face in each frame.
+- - Use the Naive Bayes classifier to predict the emotion (label) for that frame.  
+- - Display the predicted emotion alongside the bounding box.  
+- - Apply majority voting to determine the current overall prediction for the video, which changes as frames progress.
 
-    
+
   
   
 
