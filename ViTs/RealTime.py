@@ -6,7 +6,6 @@ from PIL import Image
 from torchvision.transforms import functional as F
 from sklearn.naive_bayes import GaussianNB
 
-# Load the trained Naive Bayes model
 def load_naive_bayes_model(model_path):
     model = GaussianNB()
     model.fit(X_train, y_train)  
