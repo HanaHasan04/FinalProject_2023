@@ -9,7 +9,7 @@ We have a directory "frames" (with all the frames we extracted from the videos) 
                           |
                           |                       .
                           |                       .
-       data --> frames ---|                       .
+      data --> frames --->|                       .
                           |                       .
                           |                       .
                           |
