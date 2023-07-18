@@ -32,14 +32,14 @@ We have a directory "frames" (with all the frames we extracted from the videos) 
 
   We will get a new directory "metadata" that will contain 30 excels, 1 for each horse, with all the feature vectors of all the frames we sampled.
 
-- **Step 3: train and choos top k frames:**
+- **Step 3: train the model and select top k frames:**
   
   Run step_3_train.py.
 
   Training LOOCV-SVM model with confidence level selection on all metadata. For each horse and each emotion, selecting the k frames that were correctly classified and received the highest accuracy (a total of 4k frames will be received for each horse).
 
   We will get a new directory "new_metadata" that will contain 30 excels, 1 for each horse, with all the feature vectors of all the top k frames of that horse.
-- **Step 4: re-train:**
+- **Step 4: re-train the model:**
   
   Run step_3_retrain.py.
 
