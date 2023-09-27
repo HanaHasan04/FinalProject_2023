@@ -1,18 +1,17 @@
 """
-    The dataset:
-        - In 'data/videos' there are 4 directories:
-            1. 'data/videos/Anticipation' with ~3 videos (of 3 seconds) per horse.
-            2. 'data/videos/Baseline' with ~1 video (of 3 seconds) per horse.
-            3. 'data/videos/Disappointment' with ~3 videos (of 3 seconds) per horse.
-            4. 'data/videos/Frustration' with ~3 videos (of 3 seconds) per horse.
-
-        - Example of video's name: 'S1-T1-A1-C1-3.mp4'
-            1. 'S1': horse number 1.
-            2. 'T1-A1-C1-3': the name of the video.
+    Use the original files:
+        - extract_frames.py
+        - yolo.py
+        - grayST.py
+        - embedding.py
+        - average.py
+    Use the new files:
+        - binary_classifier.py
+        - train.py
 """
 
-
 from extract_frames import *
+from binary_classifier import *
 from yolo import *
 from grayST import *
 from embedding import *
@@ -45,9 +44,8 @@ i_end = 30
 # parameters
 frame_step = 20
 k = 100
-k_baseline = 34
 
-class_labels = ["Anticipation", "Baseline", "Disappointment", "Frustration"]
+class_labels = ["Anticipation", "Frustration"]
 
 
 print("** VIDEO-BASED AUTOMATED RECOGNITION OF EMOTIONAL STATES IN HORSES **")
@@ -67,37 +65,43 @@ extract_and_save_video_frames(videos_dir, frames_dir)
 print("Time: ", time.time() - start_time)
 print("")
 
-print("STEP 2: YOLO DETECTION")
+print("STEP 2: SAVE ONLY 2 EMOTIONS FRAMES")
+start_time = time.time()
+binary_classifier(frames_dir, i_start, i_end)
+print("Time: ", time.time() - start_time)
+print("")
+
+print("STEP 3: YOLO DETECTION")
 start_time = time.time()
 yolo_detction(frames_dir, i_start, i_end)
 print("Time: ", time.time() - start_time)
 print("")
 
-print("STEP 3: GRAY-ST")
+print("STEP 4: GRAY-ST")
 start_time = time.time()
 convert_frames_to_GrayST(frames_dir, i_start, i_end, frame_step)
 print("Time: ", time.time() - start_time)
 print("")
 
-print("STEP 4: EMBEDDING")
+print("STEP 5: EMBEDDING")
 start_time = time.time()
 embedding(frames_dir, metadata_dir, class_labels, i_start, i_end)
 print("Time: ", time.time() - start_time)
 print("")
 
 retrain = False
-print("STEP 5: TRAIN A FIRST MODEL USING ALL DATA")
+print("STEP 6: TRAIN A FIRST MODEL USING ALL DATA")
 start_time = time.time()
-train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, k_baseline, i_start, i_end, retrain)
+train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, i_start, i_end, retrain)
 first_average = calculate_average_results(metrics_dir, excels_dir, excel_first_model, i_start, i_end)
 print(f"Average accuracy for all horses: {first_average}")
 print("Time: ", time.time() - start_time)
 print("")
 
 retrain = True
-print(f"STEP 6: TRAIN A SECOND MODEL USING THE TOP K = {k} FRAMES")
+print(f"STEP 7: TRAIN A SECOND MODEL USING THE TOP K = {k} FRAMES")
 start_time = time.time()
-train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, k_baseline, i_start, i_end, retrain)
+train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, i_start, i_end, retrain)
 second_average = calculate_average_results(new_metrics_dir, excels_dir, excel_second_model, i_start, i_end)
 print(f"Average accuracy for all horses: {second_average}")
 print("Time: ", time.time() - start_time)

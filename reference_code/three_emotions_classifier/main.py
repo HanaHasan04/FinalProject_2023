@@ -1,21 +1,20 @@
 """
-    The dataset:
-        - In 'data/videos' there are 4 directories:
-            1. 'data/videos/Anticipation' with ~3 videos (of 3 seconds) per horse.
-            2. 'data/videos/Baseline' with ~1 video (of 3 seconds) per horse.
-            3. 'data/videos/Disappointment' with ~3 videos (of 3 seconds) per horse.
-            4. 'data/videos/Frustration' with ~3 videos (of 3 seconds) per horse.
-
-        - Example of video's name: 'S1-T1-A1-C1-3.mp4'
-            1. 'S1': horse number 1.
-            2. 'T1-A1-C1-3': the name of the video.
+    Use the original files:
+        - extract_frames.py
+        - yolo.py
+        - grayST.py
+        - embedding.py
+        - average.py
+    Use the new files:
+        - tree_emotions_classifier.py
+        - train.py
 """
-
 
 from extract_frames import *
 from yolo import *
 from grayST import *
 from embedding import *
+from tree_emotions_classifier import *
 from train import *
 from average import *
 
@@ -47,7 +46,7 @@ frame_step = 20
 k = 100
 k_baseline = 34
 
-class_labels = ["Anticipation", "Baseline", "Disappointment", "Frustration"]
+class_labels = ["Baseline", "Combined", "Frustration"]
 
 
 print("** VIDEO-BASED AUTOMATED RECOGNITION OF EMOTIONAL STATES IN HORSES **")
@@ -85,8 +84,14 @@ embedding(frames_dir, metadata_dir, class_labels, i_start, i_end)
 print("Time: ", time.time() - start_time)
 print("")
 
+print("STEP 5: REPLACE TO TREE EMOTIONS")
+start_time = time.time()
+tree_emotions_classifier(metadata_dir, i_start, i_end)
+print("Time: ", time.time() - start_time)
+print("")
+
 retrain = False
-print("STEP 5: TRAIN A FIRST MODEL USING ALL DATA")
+print("STEP 6: TRAIN A FIRST MODEL USING ALL DATA")
 start_time = time.time()
 train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, k_baseline, i_start, i_end, retrain)
 first_average = calculate_average_results(metrics_dir, excels_dir, excel_first_model, i_start, i_end)
@@ -95,7 +100,7 @@ print("Time: ", time.time() - start_time)
 print("")
 
 retrain = True
-print(f"STEP 6: TRAIN A SECOND MODEL USING THE TOP K = {k} FRAMES")
+print(f"STEP 7: TRAIN A SECOND MODEL USING THE TOP K = {k} FRAMES")
 start_time = time.time()
 train_the_model(metadata_dir, new_metadata_dir, metrics_dir, new_metrics_dir, class_labels, k, k_baseline, i_start, i_end, retrain)
 second_average = calculate_average_results(new_metrics_dir, excels_dir, excel_second_model, i_start, i_end)
