@@ -146,13 +146,71 @@ In these histograms, you can observe the confidence level distributions of frame
 
 ## Distinguishing Between Anticipation and Frustration  
 ### Binary Classifier
-For this task, we adapted the pipeline that generated our top-performing model, which encompassed processes such as face cropping, GrayST, training, and retraining on the top 100 frames. Table ![bin_classifier_table](link_to_bin_classifier_table) provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when focusing on the two most "confounding" emotions, the performance of this binary classifier is somewhat reduced, with an accuracy of 0.61 compared to 0.76. One possible explanation for this confusion between Anticipation and Frustration is that both emotions are highly "expressive" in nature, in contrast to the baseline and disappointment, leading the model to occasionally misclassify between these two states.
+For this task, we adapted the pipeline that generated our top-performing model, which encompassed processes such as face cropping, GrayST, training, and retraining on the top 100 frames. The table provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when focusing on the two most "confounding" emotions, the performance of this binary classifier is somewhat reduced, with an accuracy of 0.61 compared to 0.76. One possible explanation for this confusion between Anticipation and Frustration is that both emotions are highly "expressive" in nature, in contrast to the baseline and disappointment, leading the model to occasionally misclassify between these two states.
+
+#### Model Performance of the Binary Classifier: Anticipation vs. Frustration.
 
 | Accuracy | Precision | Recall | F1    |
 |----------|-----------|--------|-------|
 | 0.61     | 0.65      | 0.60   | 0.56  |
 
-**Table 1:** Model Performance of the Binary Classifier: Anticipation vs. Frustration.
 
 ### Three-Category Classifier
-Furthermore, we explored the development of a three-category classifier that combines these two emotions into a single category. Table ![three_cat_classifier_table](link_to_three_cat_classifier_table) provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when combining the two most "confounding" emotions into one, the performance of this 3-category classifier is increased, with an accuracy of 0.90 compared to 0.76. The reasoning behind this might lie in the fact that the model could actually separate the baseline, disappointment, and the amalgamation of "anticipation and frustration" into a single entity. If we consider frustration as a form of "negative anticipation," it's possible that the horse's expressions of these emotions are not easily distinguishable, contributing to this improved classifier performance.
+Furthermore, we explored the development of a three-category classifier that combines these two emotions into a single category. The table provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when combining the two most "confounding" emotions into one, the performance of this 3-category classifier is increased, with an accuracy of 0.90 compared to 0.76. The reasoning behind this might lie in the fact that the model could actually separate the baseline, disappointment, and the amalgamation of "anticipation and frustration" into a single entity. If we consider frustration as a form of "negative anticipation," it's possible that the horse's expressions of these emotions are not easily distinguishable, contributing to this improved classifier performance.
+
+#### Model Performance of the 3-Category Classifier: Anticipation and Frustration Merged.
+
+| Accuracy | Precision | Recall | F1    |
+|----------|-----------|--------|-------|
+| 0.90     | 0.93      | 0.90   | 0.90  |  
+
+
+## On the On the Power of DINO-ViT Features  
+Vision Transformers (ViT) have emerged as powerful backbones for image analysis. When trained using self-distillation techniques like DINO, they produce rich representations that capture both local and global features within images.  
+To gain insights into these representations, we employed Principal Component Analysis (PCA) with $n=2$ components to project the features into a 2D space. In this visualization, each point corresponds to the embedding of a single frame, and emotions are differentiated by colors. 
+<img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a9dfcd74-bacd-4c02-b241-fce2090088e6" alt="PCA_S11" width="50%">
+
+
+To further explore the deep features extracted by the ViT model trained with DINO, 
+we visualize the attention map of one of the ViT heads. The ViT discovers the semantic structure of an image in an unsupervised way. In the figures, we present the input image, the attention map extracted from the last layer, the map after applying Gaussian blur for smoothing and normalizing, and lastly, the original image overlaid with the smoothed map, for each one of the emotional classes.
+
+#### Anticipation
+<table align="center">
+  <tr>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/869c97c4-f714-4244-9c04-965fed3203f5" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/02a9d0c2-0336-494c-bf54-b8751940d46f" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/c1c47d34-61a5-450f-8863-d535b2875613" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/df6442f6-1b93-47a3-ba51-216946f22efc" width="200"></td>
+  </tr>
+</table>
+
+#### Baseline
+<table align="center">
+  <tr>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/d779f9f0-e140-4d78-9726-d0865b84c0c9" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/b3ef99f8-ff0b-47b9-aca7-8dedd74259c3" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/f058fa4a-d703-4d95-a417-bbfbe165e55a" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/340d951f-c1da-42ce-9c78-b4acce61dd8b" width="200"></td>
+  </tr>
+</table>
+
+#### Disappointment
+<table align="center">
+  <tr>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/4acac22a-1c72-4f2e-8904-e6bc74140867" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/4db6d065-aab2-47e2-824c-e9b06466d31e" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/7b2715cb-aa29-46d4-ab28-f2ee9b49d0c3" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/55d1ffd4-ce6e-41c1-b388-fffd25834bbb" width="200"></td>
+  </tr>
+</table>
+
+#### Frustration
+<table align="center">
+  <tr>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/20993969-743d-4b29-bde5-84bb930356f4" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a38ace79-4f5a-4262-8711-79091c960127" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/2400ed3f-0ea0-48ca-9cf2-63c1cd783e99" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/0d5c37fe-8861-4401-ad6a-971d0a3c5073" width="200"></td>
+  </tr>
+</table>
+
