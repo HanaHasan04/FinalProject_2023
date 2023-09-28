@@ -135,11 +135,24 @@ To summarize the model's overall performance, we averaged the evaluation metrics
 | Face Cropping + GrayST + k = 100       | 0.76     | 0.84      | 0.79   | 0.77  |
 | Face Cropping + GrayST + k = 150       | 0.74     | 0.83      | 0.77   | 0.75  |
 
-![conf_mat](https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/fc7d999a-4707-42d1-93b5-f9f6e4559d01)
+<img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/fc7d999a-4707-42d1-93b5-f9f6e4559d01" alt="conf_mat" width="50%">
 
 #### Confidence Histograms of Frames Classified by Our Model
 
-<img width="433" alt="confidence_levels_all" src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a3cc8dec-8083-4e5c-82e2-d8474787c81b">
+<img width="649.5" alt="confidence_levels_all" src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a3cc8dec-8083-4e5c-82e2-d8474787c81b">
 
-In these histograms, you can observe the confidence level distributions of frames classified by our model, with a substantial number of frames with high confidence levels, followed by a long tail of frames with low confidence levels. An interesting observation arises in the Anticipation and Frustration histogram, reflecting a significant overlap between these two emotions, as also evident in the confusion matrix above. To address this challenge, we explore a dedicated binary classifier for distinguishing between Anticipation and Frustration in [Section](#).
+In these histograms, you can observe the confidence level distributions of frames classified by our model, with a substantial number of frames with high confidence levels, followed by a long tail of frames with low confidence levels. An interesting observation arises in the Anticipation and Frustration histogram, reflecting a significant overlap between these two emotions, as also evident in the confusion matrix above. To address this challenge, we explore a dedicated binary classifier for distinguishing between Anticipation and Frustration.
 
+
+## Distinguishing Between Anticipation and Frustration  
+### Binary Classifier
+For this task, we adapted the pipeline that generated our top-performing model, which encompassed processes such as face cropping, GrayST, training, and retraining on the top 100 frames. Table ![bin_classifier_table](link_to_bin_classifier_table) provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when focusing on the two most "confounding" emotions, the performance of this binary classifier is somewhat reduced, with an accuracy of 0.61 compared to 0.76. One possible explanation for this confusion between Anticipation and Frustration is that both emotions are highly "expressive" in nature, in contrast to the baseline and disappointment, leading the model to occasionally misclassify between these two states.
+
+| Accuracy | Precision | Recall | F1    |
+|----------|-----------|--------|-------|
+| 0.61     | 0.65      | 0.60   | 0.56  |
+
+**Table 1:** Model Performance of the Binary Classifier: Anticipation vs. Frustration.
+
+### Three-Category Classifier
+Furthermore, we explored the development of a three-category classifier that combines these two emotions into a single category. Table ![three_cat_classifier_table](link_to_three_cat_classifier_table) provides an overview of the model's performance metrics, including accuracy, precision, recall, and F1-score. Notably, compared to the four-emotion classifier, when combining the two most "confounding" emotions into one, the performance of this 3-category classifier is increased, with an accuracy of 0.90 compared to 0.76. The reasoning behind this might lie in the fact that the model could actually separate the baseline, disappointment, and the amalgamation of "anticipation and frustration" into a single entity. If we consider frustration as a form of "negative anticipation," it's possible that the horse's expressions of these emotions are not easily distinguishable, contributing to this improved classifier performance.
