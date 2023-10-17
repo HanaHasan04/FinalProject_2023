@@ -216,3 +216,27 @@ we visualize the attention map of one of the ViT heads. The ViT discovers the se
   </tr>
 </table>
 
+
+## Step-By-Step Guide
+### Dataset:
+	The dataset is organized into four categories of horse behavior videos:
+	1. Anticipation.
+	2. Baseline.
+	3. Disappointment.
+	4. Frustration.
+
+	Example video name: the video's name follows the pattern: S*the number of the horse*-*the name of the video*.mp4.
+	For example:
+	'S1-T1-A1-C1-3.mp4'
+	- S1: Horse number 1.
+	- T1-A1-C1-3: The name of the video.
+
+### Usage:
+	To replicate and use this project, run the main.py file along with the following files:
+	1. extract_frames.py
+	2. yolo.py
+	3. grayST.py
+	4. embedding.py
+	5. train.py
+	6. average.py
+	
