@@ -1,0 +1,2 @@
+# DINO-ViT Features
+We are going to visualize some attention patterns of the [DINO paper](https://arxiv.org/abs/2104.14294). The paper showed that, when Vision Transformers are pre-trained in a self-supervised fashion using the DINO method, they are able to segment objects within images without having been trained to do so explicitly. This behaviour is not observed in classical convolutional models like ResNets.
