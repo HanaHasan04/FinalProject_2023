@@ -9,7 +9,7 @@ This study aims to bridge this gap by being the first, to the best of our knowle
 
 ## Our Methods and Techniques
 ### Overview
-We present a machine learning model for emotion classification using the facial area, reaching accuracy of above $76\%$. We also apply techniques of frame selection to better exploit the availability of video data.
+We present a machine learning model for emotion classification using the facial area, reaching accuracy of above $76$%. We also apply techniques of frame selection to better exploit the availability of video data.
 
 ![image](https://github.com/HallelWeinberg/Horse-Emotion-Classification/assets/100043559/2c41416b-61ea-48f0-8c99-eaf455a4bef1)
 
@@ -42,7 +42,7 @@ Our model consists of the following code files:
 * [train.py](train.py)
 * [average.py](average.py)
 
-You can see other codes we used [here](reference_code):
+You can see other code we used [here](reference_code):
 * [sampling.py:](reference_code/sampling.py) a code that sample frames from the dataset.
 * [train_with_average_confidence_level.py:](reference_code/train_with_average_confidence_level.py) a code of the training phase with average confidence level instead of majority vote.
 * [Binary classifier:](reference_code/binary_classifier) a code of a binary classifier between the two problematic emotions.
@@ -84,7 +84,8 @@ In the context of ViT-B/8, "ViT" stands for Vision Transformer, and "B/8" denote
 We extract the output of the final layer as a 768-dimensional embedding vector that will be used for emotion classification.
 
 We utilize a SVM for the classification of the 768-dimensional embedding vectors. In order to emulate a balanced dataset, we adjust the weights assigned to each class in inverse proportion to their frequencies in the input data. 
-![image](https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/b1d3b6ba-4393-4de9-8039-e5a40d69aab5)  
+
+![image](https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/85b58662-85bf-4381-aaf2-7c6a32e59b70)
 
 #### Leave-One-Out Cross-Validation (LOOCV)
 To assess the performance of our models, we rely on standard evaluation metrics, including accuracy, precision, recall, and F1. As part of our validation process, we employ the leave-one-subject-out cross-validation method, ensuring no subject overlap.
@@ -135,11 +136,12 @@ To summarize the model's overall performance, we averaged the evaluation metrics
 | Face Cropping + GrayST + k = 100       | 0.76     | 0.84      | 0.79   | 0.77  |
 | Face Cropping + GrayST + k = 150       | 0.74     | 0.83      | 0.77   | 0.75  |
 
-<img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/fc7d999a-4707-42d1-93b5-f9f6e4559d01" alt="conf_mat" width="50%">
+<img width="960" alt="conusion_matrix_all" src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/b52649f9-3f2a-4f7d-bd1d-ec39157fa401">
+
 
 #### Confidence Histograms of Frames Classified by Our Model
 
-<img width="649.5" alt="confidence_levels_all" src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a3cc8dec-8083-4e5c-82e2-d8474787c81b">
+<img width="433" alt="confidence_levels_all" src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/7f1d37b8-e27d-4c07-9357-8be33f80e984">
 
 In these histograms, you can observe the confidence level distributions of frames classified by our model, with a substantial number of frames with high confidence levels, followed by a long tail of frames with low confidence levels. An interesting observation arises in the Anticipation and Frustration histogram, reflecting a significant overlap between these two emotions, as also evident in the confusion matrix above. To address this challenge, we explore a dedicated binary classifier for distinguishing between Anticipation and Frustration.
 
@@ -177,40 +179,40 @@ we visualize the attention map of one of the ViT heads. The ViT discovers the se
 #### Anticipation
 <table align="center">
   <tr>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/869c97c4-f714-4244-9c04-965fed3203f5" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/02a9d0c2-0336-494c-bf54-b8751940d46f" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/c1c47d34-61a5-450f-8863-d535b2875613" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/df6442f6-1b93-47a3-ba51-216946f22efc" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/cb1a56d0-4aa9-4a58-b86d-08182963d96d" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a6bfeb85-c19d-476b-90c3-0ae79e1ac485" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/b6fa56ac-92af-441f-9777-554d8711a2dc" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/df9f3eee-71fa-4885-9ec5-708c76d1304e" width="200"></td>
   </tr>
 </table>
 
 #### Baseline
 <table align="center">
   <tr>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/d779f9f0-e140-4d78-9726-d0865b84c0c9" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/b3ef99f8-ff0b-47b9-aca7-8dedd74259c3" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/f058fa4a-d703-4d95-a417-bbfbe165e55a" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/340d951f-c1da-42ce-9c78-b4acce61dd8b" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/64664ce6-ff93-4e66-a5e7-4316858b9781" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/f8767c16-3c90-4e8f-b74b-ebaf09397730" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/ef00a782-0670-4640-9cd5-644dc2662dbd" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/113b022b-92bd-43ae-bb9e-e1be55618e2f" width="200"></td>
   </tr>
 </table>
 
 #### Disappointment
 <table align="center">
   <tr>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/4acac22a-1c72-4f2e-8904-e6bc74140867" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/4db6d065-aab2-47e2-824c-e9b06466d31e" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/7b2715cb-aa29-46d4-ab28-f2ee9b49d0c3" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/55d1ffd4-ce6e-41c1-b388-fffd25834bbb" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/7a27de3a-ab2e-4499-b42c-2dc718952053" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/21cbf129-34d6-4490-b4ce-25adc86a33f8" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/67b4f5ff-d717-4d18-ac6b-2cbde9c842fb" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/766be6f5-2a2d-4d81-9680-91802642b109" width="200"></td>
   </tr>
 </table>
 
 #### Frustration
 <table align="center">
   <tr>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/20993969-743d-4b29-bde5-84bb930356f4" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a38ace79-4f5a-4262-8711-79091c960127" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/2400ed3f-0ea0-48ca-9cf2-63c1cd783e99" width="200"></td>
-    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/0d5c37fe-8861-4401-ad6a-971d0a3c5073" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/da66976b-4f3d-4baa-8c23-52c6d8ca64a8" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/24f4e0a2-c278-42b2-a6fc-5ae3f867b5aa" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/846b9d44-fbc5-4e72-a6ab-1f003e6b129f" width="200"></td>
+    <td><img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/2ac2f3db-3d04-4978-a876-79a4ad4ac939" width="200"></td>
   </tr>
 </table>
 
