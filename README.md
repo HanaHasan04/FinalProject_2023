@@ -167,7 +167,7 @@ Furthermore, we explored the development of a three-category classifier that com
 | 0.90     | 0.93      | 0.90   | 0.90  |  
 
 
-## On the On the Power of DINO-ViT Features  
+## On the Power of DINO-ViT Features  
 Vision Transformers (ViT) have emerged as powerful backbones for image analysis. When trained using self-distillation techniques like DINO, they produce rich representations that capture both local and global features within images.  
 To gain insights into these representations, we employed Principal Component Analysis (PCA) with $n=2$ components to project the features into a 2D space. In this visualization, each point corresponds to the embedding of a single frame, and emotions are differentiated by colors. 
 <img src="https://github.com/HanaHasan04/FinalProject_2023/assets/100927079/a9dfcd74-bacd-4c02-b241-fce2090088e6" alt="PCA_S11" width="50%">
